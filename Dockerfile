@@ -7,13 +7,11 @@ RUN apt-install php-geoip
 
 RUN curl -fsSL -o piwik.tar.gz \
       "https://builds.piwik.org/piwik-${PIWIK_VERSION}.tar.gz" \
- && rm -rf /var/www/html/ \
+ && rm -rf /app \
  && tar -xzf piwik.tar.gz -C /usr/src/ \
- && mv /usr/src/piwik /var/www/html \
+ && mv /usr/src/piwik /app \
  && rm piwik.tar.gz
 
-RUN curl -fsSL -o /var/www/html/misc/GeoIPCity.dat.gz http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz \
- && gunzip /var/www/html/misc/GeoIPCity.dat.gz \
- && chown "$APPLICATION_USER":"$APPLICATION_GROUP" /var/www/html/misc/GeoIPCity.dat
-
- WORKDIR /var/www/html
+RUN curl -fsSL -o /app/misc/GeoIPCity.dat.gz http://geolite.maxmind.com/download/geoip/database/GeoLiteCity.dat.gz \
+ && gunzip /app/misc/GeoIPCity.dat.gz \
+ && chown "$APPLICATION_USER":"$APPLICATION_GROUP" /app/misc/GeoIPCity.dat
