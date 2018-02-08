@@ -1,6 +1,6 @@
 FROM webdevops/php-apache:debian-9
 
-ENV PIWIK_VERSION 3.2.1
+ENV PIWIK_VERSION 3.3.0
 ENV php.geoip.custom_directory /var/www/html/misc
 
 RUN apt-install php-geoip
